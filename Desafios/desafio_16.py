@@ -9,7 +9,7 @@ class Funcionario:
         self.cargo = cargo
 
     def __str__(self):
-        return(f"Olá meu nome é: {self.nome}, trabalho no setor de {self.setor} no cargo de {self.cargo}.")
+        return f"Olá meu nome é: {self.nome}, trabalho no setor de {self.setor} no cargo de {self.cargo}."
 
 f1 = Funcionario("Eduardo", "TI", "Desenvolvedor")
 f2 = Funcionario("Pedro", "RH", "Analista de contratações")
