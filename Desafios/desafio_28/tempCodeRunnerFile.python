@@ -1,0 +1,10 @@
+def main():
+
+    t1 = Termostato()
+    t1.temperatura = 25
+    print(f"A temperatura é: {t1.ftemperatura}")
+
+
+
+    if __name__ == "__main()__":
+        main()

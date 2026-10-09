@@ -39,21 +39,4 @@ class Circulo(Poligono):
         print(f"O perímetro do circulo é: {2 * 3.14 * self.raio}")
 
     def area(self):
-        print(f"A área desse círculo é: {3.14 * (self.raio + self.raio)}")
-    
-
-
-
-def main():
-
-    q1 = Quadrado(6)
-    q1.perimetro()
-    q1.area()
-
-    c1 = Circulo(9)
-    c1.perimetro()
-    c1.area()
-    
-
-if __name__ == "__main__":
-    main()
+        print(f"A área desse círculo é: {3.14 * (self.raio ** 2)}")
