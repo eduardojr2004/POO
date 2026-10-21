@@ -1,69 +1,48 @@
-from abc import ABC, abstractmethod
-from datetime import date
+import datetime
 
-class Pessoa(ABC):
-    
-    def __init__(self, nome, nasc):
-        self._nome = nome
-        self._nascimento = None
-        self.nascimento = nasc
+class Pessoa():
 
-    @property
-    def nascimento(self):
-        return self._nascimento
+    def __init__(self, nome, nascimento):
+        self.nome = nome
+        self.nascimento = nascimento
+        self._idade = 0
 
-    @nascimento.setter
-    def nascimento(self, ano):
-        if 1900 <= ano <= date.today().year:
-            self._nascimento = ano
-        else:
-            raise ValueError(f"{ano} é um ano inválido")
+        
+class Aluno(Pessoa):
+
+    cursos_oficiais = ["ADM", "ADS", "ING"]
+
+    def __init__(self, nome, nascimento, curso):
+        super().__init__(nome, nascimento)
+        self._curso = curso
+
 
     @property
     def idade(self):
-        return date.today().year - self._nascimento
-
+        ano_atual = datetime.date.today().year
+        if self.nascimento < ano_atual:
+            self._idade = ano_atual - self.nascimento
+        return self._idade
+    
     @idade.setter
     def idade(self, valor):
-        raise PermissionError("Você não pode alterar a idade. Mude o ano de nascimento.")
+        print(f"Negado! A idade não pode ser alterada para {valor}. Ela é calculada automaticamente.")
 
-    @abstractmethod
-    def apresentar(self):
-        pass
-
-
-class Aluno(Pessoa):
-
-    cursos_oficiais = ["ADM", "ADS", "ENG", "CONT"]
-
-    def __init__(self, nome, nasc, curso):
-        super().__init__(nome, nasc)
-        self._curso = None
-        self.curso = curso
 
     @property
     def curso(self):
         return self._curso
 
     @curso.setter
-    def curso(self, curso):
-        if curso in Aluno.cursos_oficiais:
-            self._curso = curso
+    def curso(self,valor):
+        if 3 <= len(valor) <= 5 and valor in self.cursos_oficiais:
+                    self._curso = valor
         else:
-            self._curso = None
-            raise ValueError(f"O curso: {curso} não esta na lista de cursos oficiais.")
+            print("O curso esta fora do padrão ou já existe!")
 
-    @classmethod
-    def add_curso(cls, novo_curso):
-        novo_curso = novo_curso.strip().upper()
 
-        if 3 <= len(novo_curso) <= 5:
-            Aluno.cursos_oficiais.append(novo_curso)
+    def add_curso(self, curso):
+        if 3 <= len(curso) <= 5 and curso not in self.cursos_oficiais:
+            self.cursos_oficiais.append(curso)
         else:
-            raise ValueError(f"Nome do curso: {novo_curso} esta fora do padrão.")
-
-    def apresentar(self):
-        return f"Olá, sou {self._nome}, tenho {self.idade} anos e estudo {self.curso}."
-
-    def __str__(self):
-        return f"Aluno(Nome: {self._nome}, Nasc: {self.nascimento}, Curso: {self.curso})"
+            print("O curso esta fora do padrão ou já existe!")

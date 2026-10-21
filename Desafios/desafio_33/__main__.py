@@ -1,14 +1,18 @@
 from classes import Pessoa, Aluno
 
 def main():
-
-    p1 = Aluno("Pedro", 1985, "ADM")
-    p1.nascimento = 1980
-    Aluno.add_curso("MODA")
-    print(p1)
-    print(p1.apresentar())
-    print("Cursos oficiais: ", Aluno.cursos_oficiais)
-
+    a1 = Aluno("Pedro", 2000, "ADM")
+    print(a1.__dict__)
+    print(a1.idade)
+    #a1.idade = 22
+    #a1.curso = "ADM"
+    a1.add_curso("MODA")
+    a1.curso = "ADS"
+    print(Aluno.cursos_oficiais)
+    print(a1.__dict__)
     
+
+
+
 if __name__ == "__main__":
     main()
